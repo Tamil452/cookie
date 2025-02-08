@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Zoho SalesIQ Integration -->
     <script>
@@ -12,16 +13,21 @@
     </script>
     <script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siqf0c4ff9e210a588b58017efc80528d7ec3f8b5c9518f4853e7cb226c64a00981" defer></script>
 </head>
-<body>
-    <div id="cookie-banner" class="cookie-banner">
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <div id="cookie-banner" class="fixed bottom-4 left-4 bg-white p-4 shadow-md rounded-md flex flex-col space-y-2">
         <p>We use cookies to enhance your experience. Accept non-essential cookies?</p>
-        <button onclick="acceptCookies()">Accept</button>
-        <button onclick="declineCookies()">Decline</button>
-        <a href="cookie-preferences.html">Manage Preferences</a>
+        <div class="flex space-x-2">
+            <button class="bg-green-500 text-white px-4 py-2 rounded" onclick="acceptCookies()">Accept</button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="declineCookies()">Decline</button>
+            <a href="cookie-preferences.html" class="text-blue-500 underline">Manage Preferences</a>
+        </div>
     </div>
     
-    <h1>Welcome to Our Website</h1>
-    <p><a href="login.html">Go to Login Page</a></p>
+    <h1 class="text-3xl font-bold">Welcome to Our Website</h1>
+    <p class="mt-4"><a href="login.html" class="text-blue-500 underline">Go to Login Page</a></p>
+    
+    <!-- Zoho SalesIQ Chat Widget -->
+    <div id="zohosalesiqchat"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
