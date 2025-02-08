@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website</title>
+  <style>
+    /* Basic styles for the cookies banner */
+    #cookies-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      display: none;
+      z-index: 9999;
+    }
+    #cookies-banner button {
+      background-color: #f44336;
+      color: white;
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    #cookies-banner button:hover {
+      background-color: #d32f2f;
+    }
+    #cookies-banner a {
+      color: #f44336;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Your website's content goes here -->
+
+  <!-- Cookies Banner -->
+  <div id="cookies-banner">
+    <p>
+      We use cookies to enhance your experience. You can choose to accept or decline non-essential cookies. Essential cookies are necessary for the website to function properly.
+      <br>
+      <button id="accept-cookies">Accept</button>
+      <button id="decline-cookies">Decline</button>
+      <button id="manage-preferences">Manage Preferences</button>
+    </p>
+  </div>
+
+  <!-- Footer with Cookies Preferences Link -->
+  <footer>
+    <p><a href="#" id="cookies-preferences-footer">Cookies Preferences</a></p>
+  </footer>
+
+  <!-- Zoho SalesIQ Integration -->
+  <script>
+    window.$zoho = window.$zoho || {};
+    $zoho.salesiq = $zoho.salesiq || { ready: function() {} };
+  </script>
+  <script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siqf0c4ff9e210a588b58017efc80528d7ec3f8b5c9518f4853e7cb226c64a00981" defer></script>
+
+  <script>
+    // Check if the user has already made a choice
+    if (!localStorage.getItem('cookies-consent')) {
+      // Show the banner if no decision is made
+      document.getElementById('cookies-banner').style.display = 'block';
+    }
+
+    // Handle Accept
+    document.getElementById('accept-cookies').onclick = function() {
+      localStorage.setItem('cookies-consent', 'accepted');
+      document.getElementById('cookies-banner').style.display = 'none';
+      enableNonEssentialCookies(true);
+    };
+
+    // Handle Decline
+    document.getElementById('decline-cookies').onclick = function() {
+      localStorage.setItem('cookies-consent', 'declined');
+      document.getElementById('cookies-banner').style.display = 'none';
+      enableNonEssentialCookies(false);
+    };
+
+    // Handle Manage Preferences
+    document.getElementById('manage-preferences').onclick = function() {
+      window.location.href = '/cookie-preferences'; // Redirect to your cookie preferences page
+    };
+
+    // Footer link to manage preferences
+    document.getElementById('cookies-preferences-footer').onclick = function(e) {
+      e.preventDefault();
+      window.location.href = '/cookie-preferences'; // Redirect to your cookie preferences page
+    };
+
+    // Enable/Disable non-essential cookies based on user choice
+    function enableNonEssentialCookies(isEnabled) {
+      if (isEnabled) {
+        // Enable non-essential cookies and integrate with SalesIQ API
+        $zoho.salesiq.ready(function() {
+          // Custom code to enable SalesIQ features if non-essential cookies are allowed
+        });
+      } else {
+        // Disable non-essential cookies
+        // You can add code here to disable any non-essential cookies if required
+      }
+    }
+  </script>
+
+</body>
+</html>
