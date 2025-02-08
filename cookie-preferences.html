@@ -1,54 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Cookie Preferences</title>
-  <style>
-    /* Simple styles for the preferences page */
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .preferences-container {
-      width: 60%;
-      margin: 0 auto;
-      padding-top: 20px;
-    }
-    .preferences-container label {
-      display: block;
-      margin-bottom: 10px;
-    }
-    .preferences-container input {
-      margin-right: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Preferences</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="preferences-container">
     <h2>Cookie Preferences</h2>
-    <form id="cookie-preferences-form">
-      <label>
-        <input type="checkbox" id="non-essential-cookies"> Allow non-essential cookies
-      </label>
-      <button type="submit">Save Preferences</button>
-    </form>
-  </div>
+    <p>Manage your cookie preferences below:</p>
+    
+    <button onclick="acceptCookies()">Accept All Cookies</button>
+    <button onclick="declineCookies()">Decline Non-Essential Cookies</button>
+    <p><a href="index.html">Return to Home</a></p>
 
-  <script>
-    // Load current preferences from localStorage
-    document.addEventListener('DOMContentLoaded', function() {
-      const nonEssentialCookies = localStorage.getItem('cookies-consent') === 'accepted';
-      document.getElementById('non-essential-cookies').checked = nonEssentialCookies;
-    });
-
-    // Save preferences on form submission
-    document.getElementById('cookie-preferences-form').onsubmit = function(e) {
-      e.preventDefault();
-      const isAccepted = document.getElementById('non-essential-cookies').checked;
-      localStorage.setItem('cookies-consent', isAccepted ? 'accepted' : 'declined');
-      alert('Your preferences have been saved.');
-      window.location.href = '/';  // Redirect to the homepage or previous page
-    };
-  </script>
+    <script>
+        function acceptCookies() {
+            localStorage.setItem("cookies-consent", "accepted");
+            alert("You have accepted all cookies.");
+        }
+        
+        function declineCookies() {
+            localStorage.setItem("cookies-consent", "declined");
+            alert("You have declined non-essential cookies.");
+        }
+    </script>
 </body>
 </html>
